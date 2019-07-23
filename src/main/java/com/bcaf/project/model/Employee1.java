@@ -1,18 +1,18 @@
 package com.bcaf.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+//import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+//import javax.persistence.JoinTable;
+//import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -88,23 +88,23 @@ public class Employee1 {
 	@JoinColumn(name = "position_id", foreignKey = @ForeignKey(name = "fk_employee_position_id"), insertable = false, updatable = false)
 	private Position position;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "tbl_employee_role",
-			joinColumns = @JoinColumn(
-					name = "employee_nip",
-					referencedColumnName = "nip",
-					foreignKey = @ForeignKey(name = "fe_emprole_user_id")
-					),
-			inverseJoinColumns = @JoinColumn(
-					name = "role_id",
-					referencedColumnName = "id",
-					foreignKey = @ForeignKey(name = "fk_emprole_role_id")
-					),
-			foreignKey = @ForeignKey(
-					name = "fk_emprole_user_id"),
-			inverseForeignKey = @ForeignKey(name = "fk_emprole_role_id")
-	)
-	private List<Role> listRole = new ArrayList<Role>();
+//	@ManyToMany(fetch=FetchType.EAGER)
+//	@JoinTable(name = "tbl_employee_role",
+//			joinColumns = @JoinColumn(
+//					name = "employee_nip",
+//					referencedColumnName = "nip",
+//					foreignKey = @ForeignKey(name = "fe_emprole_user_id")
+//					),
+//			inverseJoinColumns = @JoinColumn(
+//					name = "role_id",
+//					referencedColumnName = "id",
+//					foreignKey = @ForeignKey(name = "fk_emprole_role_id")
+//					),
+//			foreignKey = @ForeignKey(
+//					name = "fk_emprole_user_id"),
+//			inverseForeignKey = @ForeignKey(name = "fk_emprole_role_id")
+//	)
+//	private List<Role> listRole = new ArrayList<Role>();
 	
 	public Employee1() {
 
@@ -282,13 +282,12 @@ public class Employee1 {
 		this.position = position;
 	}
 
-	public List<Role> getListRole() {
-		return listRole;
-	}
-
-	public void setListRole(List<Role> listRole) {
-		this.listRole = listRole;
-	}
-	
+//	public List<Role> getListRole() {
+//		return listRole;
+//	}
+//
+//	public void setListRole(List<Role> listRole) {
+//		this.listRole = listRole;
+//	}
 	
 }
