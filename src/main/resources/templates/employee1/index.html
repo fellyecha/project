@@ -1,0 +1,148 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decorate="~{fragments/layout}">
+	<head>
+		<title>Employee</title>
+		<link rel="stylesheet" href="@{~/datatables.net/css/1.10.10/jquery.dataTables.min.css}" />
+		<script src="@{~/datatables.net/js/1.10.10/jquery-1.11.3.min.js}"></script>
+		<script src="@{~/datatables.net/js/1.10.10/jquery.dataTables.min.js"></script>
+	</head>
+	<body>
+		<div data-layout-fragment="content">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">List Employee</h3>
+					<div class="box-tools">
+						<button type="button" class="btn btn-info btn-sm" id="btn-add">
+							<i class="fa fa-plus"></i>
+						</button>
+						
+						<button type="button" class="btn btn-danger btn-sm" id="btn-min">
+							<i class="fa fa-remove"></i>
+						</button>
+					</div>
+				</div>
+				<div class="box-body table-responsive no padding">
+					<table class="table table-hover" id="mydata">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Position</th>
+								<th>Cabang</th>
+								<th>Regional</th>
+								<th>Nama</th>
+								<th>NIP</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody id="list-employee">
+							<tr th:each="item : ${list}">
+								<td th:text="${item.id}"></td>
+								<td th:text="${item.position.position}"></td>
+								<td th:text="${item.cabang2}"></td>
+								<td th:text="${item.regional}"></td>
+								<td th:text="${item.nama}"></td>
+								<td th:text="${item.nip}"></td>
+								<td>
+									<button type="button" class="btn btn-xs btn-warning btn-update" th:value="${item.id}">
+										<i class="fa fa-edit"></i>
+									</button>
+									
+									<button type="button" class="btn btn-xs btn-danger btn-delete" th:value="${item.id}">
+										<i class="fa fa-trash"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="main-modal" data-layout-fragment="content-modal">
+			<div class="modal-dialog">
+				<div class="modal-content" id="main-modal-content">
+				</div>
+			</div>
+		</div>
+		<script data-layout-fragment="script-js">
+			$("#btn-add").click(function(){
+				//console.log("test");
+				$.ajax({
+					url:'/employee1/create',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal("show");
+					}
+				});
+			});
+			
+			$("#main-modal").on('submit', 'form', function(){
+				var vUrl = $(this).attr('action');
+				var vData = $(this).serialize();
+				
+				$.ajax({
+					url:vUrl,
+					type:'post',
+					data:vData,
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal("hide");
+						//panggil method load data
+						loadData();
+					}
+				});
+				return false;
+			});
+			
+			function loadData(){
+				$.ajax({
+					url :'/employee1/list',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#list-employee').html(hasil);
+					}
+				});
+			}
+			
+			$("#btn-min").click(function(){
+				alert('Test Alert');
+			});
+			
+			$("#list-employee").on('click','.btn-update', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/employee1/edit/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			}).on('click','.btn-delete', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/employee1/hapus/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});		
+			
+			$(document).ready(function() {
+				$('#mydata').DataTable();
+			});
+			
+		</script>
+	</body>
+</html>

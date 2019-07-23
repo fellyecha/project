@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<tr th:each="item : ${list}">
+		<td th:text="${item.id}"></td>
+		<td th:text="${item.position.position}"></td>
+		<td th:text="${item.cabang2}"></td>
+		<td th:text="${item.regional}"></td>
+		<td th:text="${item.nama}"></td>
+		<td th:text="${item.nip}"></td>
+		<td>
+			<button type="button" class="btn btn-xs btn-warning btn-update"
+				th:value="${item.id}">
+				<i class="fa fa-edit"></i>
+			</button>
+	
+			<button type="button" class="btn btn-xs btn-danger btn-delete"
+				th:value="${item.id}">
+				<i class="fa fa-trash"></i>
+			</button>
+		</td>
+	</tr>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<meta charset="utf-8">
+	  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  	<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Project</title>
+	  	<!-- Tell the browser to be responsive to screen width -->
+	  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	  	<!-- Bootstrap 3.3.7 -->
+	  	<link rel="stylesheet" th:href="@{~/bootstrap/dist/css/bootstrap.min.css}">
+	  	<!-- Font Awesome -->
+	  	<link rel="stylesheet" th:href="@{~/font-awesome/css/font-awesome.min.css}">
+	  	<!-- Ionicons -->
+	  	<link rel="stylesheet" th:href="@{~/Ionicons/css/ionicons.min.css}">
+	  	<!-- Date Picker -->
+  		<link rel="stylesheet" th:href="@{~/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css}">
+  		<!-- Daterange picker -->
+  		<link rel="stylesheet" th:href="@{~/bootstrap-daterangepicker/daterangepicker.css}">
+	  	<!-- DataTables -->
+	  	<link rel="stylesheet" th:href="@{~/datatables.net/css/jquery.dataTables.min.css}">
+	  	<link rel="stylesheet" th:href="@{~/datatables.net-bs/css/dataTables.bootstrap.min.css}">
+	  	<!-- Select2 -->
+  		<link rel="stylesheet" th:href="@{~/select2/dist/css/select2.min.css}">
+	  	<!-- Theme style -->
+	  	<link rel="stylesheet" th:href="@{~/dist/css/AdminLTE.min.css}">
+	  	<!-- AdminLTE Skins. Choose a skin from the css/skins
+	       folder instead of downloading all of them to reduce the load. -->
+	  	<link rel="stylesheet" th:href="@{~/dist/css/skins/_all-skins.min.css}">
+	  	
+	  	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	  	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	  	<!--[if lt IE 9]>
+	  	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	  	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	  	<![endif]-->
+	
+	  	<!-- Google Font -->
+	  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+			<header th:replace="fragments/header :: header_app"></header>
+			
+			<aside th:replace="fragments/sidebar :: sidebar_app"></aside>
+			
+			<!-- Content Wrapper. Contains page content -->
+		  	<div class="content-wrapper">
+		  		<!-- Content Header (Page header) -->
+		  		<section class="content-header">
+			    	<h1>
+			        	Dashboard
+			        	<small>Control panel</small>
+			      	</h1>
+			      	<ol class="breadcrumb">
+			        	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			        	<li class="active">Dashboard</li>
+			      	</ol>
+			    </section>
+			    
+		    	<!-- Main content -->
+		    	<section class="content">
+		    		<div class="row">
+		    			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" layout:fragment="content">
+		    			
+		    			</div>
+		    		</div>
+		    	</section>
+		  	</div>
+		  	
+		  	<footer th:replace="fragments/footer :: footer_app"></footer>
+		  	
+		  	<aside th:replace="fragments/control-sidebar :: control_sidebar_app"></aside>
+		  	<!-- /.control-sidebar -->
+			<!-- Add the sidebar's background. This div must be placed
+			       immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		  </div>
+		  
+		 <div layout:fragment="content-modal"></div>
+	
+		<div layout:fragment="child-modal"></div>	
+	</body>
+	
+	<!-- jQuery 3 -->
+	<script th:src="@{~/jquery/dist/jquery.min.js}"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script th:src="@{~/jquery-ui/jquery-ui.min.js}"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+	  $.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!-- Bootstrap 3.3.7 -->
+	<script th:src="@{~/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- DataTables -->
+	<script th:src="@{~/datatables.net/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{~/datatables.net-bs/js/dataTables.bootstrap.min.js}"></script>
+	<!-- daterangepicker -->
+	<script th:src="@{~/moment/min/moment.min.js}"></script>
+	<script th:src="@{~/bootstrap-daterangepicker/daterangepicker.js}"></script>
+	<!-- datepicker -->
+	<script th:src="@{~/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
+	<!-- Select2 -->
+	<script th:src="@{~/select2/dist/js/select2.full.min.js}"></script>
+	<!-- Slimscroll -->
+	<script th:src="@{~/jquery-slimscroll/jquery.slimscroll.min.js}"></script>
+	<!-- iCheck 1.0.1 -->
+	<script th:src="@{~/iCheck/icheck.min.js}"></script>
+	<!-- FastClick -->
+	<script th:src="@{~/fastclick/lib/fastclick.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{~/dist/js/adminlte.min.js}"></script>
+	
+	<script layout:fragment="script-js" type="text/javascript"></script>
+</html>

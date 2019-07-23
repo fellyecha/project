@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<form th:action="@{~/kecamatan/remove}" method="post" th:object="${kecamatan}">
+		<div class="box box-danger box-solid">
+			<div class="box-header with-border">
+				<h3 class="box-title">Hapus Kecamatan</h3>
+				<!-- Hideen ID, Hapus -->
+				<input type="hidden" th:field="*{id}" class="form-control" />
+			</div>
+			</div>
+			<div class="box-body">
+				<table class="table">
+					<tr>
+						<th>ID<th>
+						<td th:text="${kecamatan.id}"></td>
+					</tr>					
+					<tr>
+						<th>Nama Kecamatan<th>
+						<td th:text="${kecamatan.namaKecamatan}"></td>
+					</tr>
+					<tr>
+						<th>Kabupaten / Kota<th>
+						<td th:text="${kecamatan.kabupatenKota.namaKabKota}"></td> 
+						<!-- itu kabupatenKota ambil dari model kecamatan -->
+					</tr>				
+				</table>
+			</div>
+			<div class="box-footer">
+				<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+				<button type="submit" class="btn btn-danger pull-right">Delete</button>
+			</div>
+		</div>
+	</form>
+</html>

@@ -1,0 +1,169 @@
+<html lang="en">
+	<form th:action="@{~/employee1/save}" method="post" th:object="${objEmployee}">
+		<div class="box box-info">
+			<div class="box-header">
+				<h3 class="box-title">Form Employee</h3>
+			</div>
+			<div class="box-body">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Position ID</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{positionId}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Cabang</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{cabang}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Cabang 2</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{cabang2}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Marketing</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{marketing}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Regional</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{regional}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Nama</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{nama}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{status}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Status 2</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{status2}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Pendidikan</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{pendidikan}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">gender</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{gender}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">NIP</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{nip}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Masuk</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{tglMasuk}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Initial Name</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{initialName}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Lahir</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{tglLahir}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{keterangan}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Jabatan Rangkap Tugas</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{jabatanRangkapTugas}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Cabang Rangkap Tugas</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{cabangRangkapTugas}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Awal Tugas</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{tglAwalTugas}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Akhir Tugas</label>
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<input type="text" th:field="*{tglAkhirTugas}" class="form-control">
+							<!-- Hideen ID, digunakan saat EDIT, jika CREATE maka akan 0 -->
+							<input type="hidden" th:field="*{id}" class="form-control" />
+						</div>
+					</div>					
+				</div>
+			</div>
+			<div class="box-footer">
+				<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+				<button type="submit" class="btn btn-success pull-right">Save</button>
+			</div>
+		</div>
+	</form>
+</html>
