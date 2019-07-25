@@ -21,7 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bcaf.project.model.CabangBca;
+import com.bcaf.project.model.CabangKkbBca;
 import com.bcaf.project.model.CustomerData;
+import com.bcaf.project.model.Employee;
+import com.bcaf.project.repository.CabangBcaRepo;
 import com.bcaf.project.repository.CustomerDataRepo;
 
 @Controller
@@ -34,30 +38,34 @@ public class CustomerDataController {
 	@GetMapping(value="index")
 	public ModelAndView index() {
 		ModelAndView view = new ModelAndView("customerData/index");
-		
-		List<CustomerData> customerData = this.repo.findAll();
-
-		view.addObject("customerData", customerData);
+		List<CustomerData> list = this.repo.findAll();
+		view.addObject("list", list);
 		return view;
 	}
 
-	public static final String SAMPLE_XLS_FILE_PATH = "./*.xls";
-	public static final String SAMPLE_XLSX_FILE_PATH = "./*.xlsx";
+//	public static final String SAMPLE_XLS_FILE_PATH = "./*.xls";
+//	public static final String SAMPLE_XLSX_FILE_PATH = "./*.xlsx";
 	
 	//save the uploaded file to folder
 	public static String UPLOADED_FOLDER = "./temp/";
 	
-	@GetMapping("uploadkategori")
-    public ModelAndView uploadkategori() {
-		ModelAndView view = new ModelAndView("kategori/uploadKategori");
+	@GetMapping(value ="create")
+    public ModelAndView create() {
+		ModelAndView view = new ModelAndView("customerData/_form");
+        return view;
+    }
+	
+	@GetMapping(value ="uploadKategori")
+    public ModelAndView uploadKategori() {
+		ModelAndView view = new ModelAndView("customerData/uploadKategori");
         return view;
     }
 	
 	@PostMapping(value = "upload")
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
             RedirectAttributes redirectAttributes) {
-
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+		
+//		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		if(file.isEmpty()) {
 			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:uploadstatus";
@@ -71,7 +79,8 @@ public class CustomerDataController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 		try {
-			importxls(file.getOriginalFilename());
+//			importxls(file.getOriginalFilename());
+			importxls(path.toString());
 		} catch (InvalidFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,6 +96,15 @@ public class CustomerDataController {
         ModelAndView view = new ModelAndView("customerData/uploadStatus");
         return view;
     }
+    
+    @GetMapping(value="list")
+	public ModelAndView list() {
+		ModelAndView view = new ModelAndView("customerData/_list");
+		List<CustomerData> list = this.repo.findAll();
+		view.addObject("list",list);
+		return view;
+	}
+    
 
     public void importxls(String Filename)  throws IOException, InvalidFormatException {
 		
@@ -96,7 +114,7 @@ public class CustomerDataController {
 			Connection conn = DriverManager.getConnection(url, "sa", "M4rf3l");
 			Statement st = conn.createStatement();
 
-			Workbook workbook = WorkbookFactory.create(new File(SAMPLE_XLSX_FILE_PATH));
+			Workbook workbook = WorkbookFactory.create(new File(Filename));
 
 			System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
 			Sheet sheet = workbook.getSheetAt(0);
@@ -117,7 +135,7 @@ public class CustomerDataController {
 					+ ",end_date" + ",period_berjalan" + ",angsuran_konsumen" + ",os_pokok_konsumen"
 					+ ",status_close_type" + ",od_days_max" + ",ovd_by_cust_id" + ",od_loan" + ",bpkb_status"
 					+ ",bca_branch_status" + ",bca_branch_name" + ",bca_kcu_name" + ",bca_kcu_name_baru"
-					+ ",sales_agent" + ",sales_agent_name" + ",sisa_periode" + ",cabang_ds" + ",source) VALUES ";
+					+ ",sales_agent" + ",sales_agent_name" + ",sisa_periode" + ",cabang_ds" + ",source" + ",product) VALUES ";
 			String strx = "";
 			String all = "";
 			while (rowIterator.hasNext()) {
@@ -129,9 +147,13 @@ public class CustomerDataController {
 					while (cellIterator.hasNext()) {
 						Cell cell = cellIterator.next();
 						String cellValue = dataFormatter.formatCellValue(cell);
-						strx += "'" + cellValue + "',";
-						strx = strx.substring(0, strx.length() - 1) + ",";
-						c++;
+						String strval="";
+		                strval=cellValue.replace("'", "");
+		                strval=strval.replace("#", "");
+		                strx+="'"+strval+"',";
+		                
+			            strx=strx.substring(0,strx.length()-1)+",";
+			            c++;
 					}
 					strx = "(" + strx.substring(0, strx.length() - 1) + "),";
 				}

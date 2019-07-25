@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang=en xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	data-layout-decorate="~{fragments/layout}" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<title>Upload Customer Data</title>
-</head>
-<body>
-<div data-layout-fragment="content">
+<html lang="en">
 <div class="box box-info">
 	<div class="box-header with-border">
 		<h3 class="box-title">Import Customer Data</h3>
 	</div>
 	<div style="padding:15px;">
-	<form method="POST" action="upload" enctype="multipart/form-data">
+	<form method="POST" th:action="@{~/customerData/upload}" enctype="multipart/form-data">
 		<table>
 	    <tr>
 	    	<td><input type="file" name="file" class="form-control" /></td>
@@ -21,7 +14,4 @@
 	</form>
 	</div>
 </div>
-</div>
-
-</body>
 </html>

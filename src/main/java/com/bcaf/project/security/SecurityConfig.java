@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+//tambahan dari pak roni kecuali AntPathRequestMatcher
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
@@ -71,14 +73,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/iCheck/flat/**","/iCheck/futurico/**","/iCheck/line/**","/iCheck/minimal/**","/iCheck/polaris/**","/iCheck/square/**","/iCheck/**",
 				"/Ionicons/css/**","/Ionicons/fonts/**","/Ionicons/less/**","/Ionicons/scss/**","/Ionicons/src/**","/Ionicons/png/**",
 				"/jquery/dist/**","/jquery-slimscroll/**","/jquery-ui/**","/moment/**","/select2/dist/css/**","/select2/dist/js/**").permitAll()
-		.antMatchers("/home").hasRole("USER")
-		.antMatchers("/manager").hasRole("MANAGER")
-		.antMatchers("/home","/admin","/provinsi/*").hasAnyRole("ADMIN","CMCDH","CMC","RM","BM","CMONEW","CMOREF","CMOMUL")
+		.antMatchers("/home").hasAnyRole("USER","CMONEW","CMOREF","CMOMUL")
+		.antMatchers("/manager").hasAnyRole("MANAGER","RM","BM")
+		.antMatchers("/home","/admin","/provinsi/*").hasAnyRole("ADMIN","CMCDH","CMC")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()
 		.loginPage("/login")
-		.defaultSuccessUrl("/home",true)
+		.defaultSuccessUrl("/default",true)
 		.loginProcessingUrl("/login")
 		.permitAll()
 		.and()

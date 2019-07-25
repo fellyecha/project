@@ -1,8 +1,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<form th:action="@{~/employee1/remove}" method="post" th:object="${objEmployee}">
+	<form th:action="@{~/employee/remove}" method="post" th:object="${objEmployee}">
 		<div class="box box-danger box-solid">
 			<div class="box-header with-border">
-				<h3 class="box-title">Hapus Kabupaten Kota</h3>
+				<h3 class="box-title">Hapus Employee</h3>
 				<!-- Hideen ID, Hapus -->
 				<input type="hidden" th:field="*{id}" class="form-control" />
 			</div>
@@ -14,8 +14,8 @@
 						<td th:text="${objEmployee.id}"></td>
 					</tr>					
 					<tr>
-						<th>Position<th>
-						<td th:text="${objEmployee.position.position}"></td>
+						<th>Direktorat/Divisi<th>
+						<td th:text="${objEmployee.directoratDivisi}"></td>
 					</tr>
 					<tr>
 						<th>Cabang<th>
@@ -25,6 +25,10 @@
 						<th>Regional<th>
 						<td th:text="${objEmployee.regional}"></td>
 					</tr>					
+					<tr>
+						<th>Jabatan<th>
+						<td th:text="${objEmployee.jabatan2}"></td>
+					</tr>
 					<tr>
 						<th>Nama<th>
 						<td th:text="${objEmployee.nama}"></td>

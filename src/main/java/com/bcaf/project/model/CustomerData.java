@@ -18,14 +18,17 @@ public class CustomerData {
 			pkColumnName = "index_id", valueColumnName = "index_value",
 			allocationSize = 1, initialValue = 0)
 	
+	@Column(name="id", nullable = false)
+	private Long id;
+	
 	@Column(name="no_rek", nullable =  false, length = 10)
 	private String noRek;
 	
 	@Column(name="no_pin", nullable = false, length = 3)
 	private String noPin;
 	
-	@Column(name="no_kontrak", nullable = false, length = 13)
-	private String noKontrak;
+//	@Column(name="no_kontrak", nullable = false, length = 13)
+//	private String noKontrak;
 	
 	@Column(name="customer_id", nullable = false, length = 10)
 	private String customerId;
@@ -146,6 +149,20 @@ public class CustomerData {
 	
 	@Column(name="cabang_ds", length = 255)
 	private String cabangDs;
+	
+	@Column(name="source", length = 255)
+	private String source;
+	
+	@Column(name="product", length = 50)
+	private String product;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNoRek() {
 		return noRek;
@@ -163,13 +180,13 @@ public class CustomerData {
 		this.noPin = noPin;
 	}
 
-	public String getNoKontrak() {
-		return noKontrak;
-	}
-
-	public void setNoKontrak(String noKontrak) {
-		this.noKontrak = noKontrak;
-	}
+//	public String getNoKontrak() {
+//		return noKontrak;
+//	}
+//
+//	public void setNoKontrak(String noKontrak) {
+//		this.noKontrak = noKontrak;
+//	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -492,4 +509,19 @@ public class CustomerData {
 		this.cabangDs = cabangDs;
 	}
 
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getProduct() {
+		return product;
+	}
+
+	public void setProduct(String product) {
+		this.product = product;
+	}
 }
