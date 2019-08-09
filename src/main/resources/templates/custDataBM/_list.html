@@ -1,0 +1,59 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<tr th:each="item : ${list}">
+		<td th:text="${item.id}"></td>
+		<td th:text="${item.noRek}"></td>
+		<td th:text="${item.noPin}"></td>
+		<td th:text="${item.customerId}"></td>
+		<td th:text="${item.customerName}"></td>
+		<td th:text="${item.gender}"></td>
+		<td th:text="${item.idCardNumber}"></td>
+		<td th:text="${item.birthdate}"></td>
+		<td th:text="${item.homePhoneNumber}"></td>
+		<td th:text="${item.hpNumber}"></td>
+		<td th:text="${item.emailKonsumen}"></td>
+		<td th:text="${item.companyName}"></td>
+		<td th:text="${item.jobTitle}"></td>
+		<td th:text="${item.spouseName}"></td>
+		<td th:text="${item.homeKabupaten}"></td>
+		<td th:text="${item.branchName}"></td>
+		<td th:text="${item.subProduk}"></td>
+		<td th:text="${item.merkName}"></td>
+		<td th:text="${item.tipe}"></td>
+		<td th:text="${item.tahun}"></td>
+		<td th:text="${item.hargaBarang}"></td>
+		<td th:text="${item.tenor}"></td>
+		<td th:text="${item.bpkbNo}"></td>
+		<td th:text="${item.bodyNo}"></td>
+		<td th:text="${item.realisasiDate}"></td>
+		<td th:text="${item.closeDate}"></td>
+		<td th:text="${item.endDate}"></td>
+		<td th:text="${item.periodBerjalan}"></td>
+		<td th:text="${item.angsuranKonsumen}"></td>
+		<td th:text="${item.osPokokKonsumen}"></td>
+		<td th:text="${item.statusCloseType}"></td>
+		<td th:text="${item.odDaysMax}"></td>
+		<td th:text="${item.ovdByCustID}"></td>
+		<td th:text="${item.odLoan}"></td>
+		<td th:text="${item.bpkbStatus}"></td>
+		<td th:text="${item.bcaBranchStatus}"></td>
+		<td th:text="${item.bcaBranchName}"></td>
+		<td th:text="${item.bcaKcuNameBaru}"></td>
+		<td th:text="${item.salesAgent}"></td>
+		<td th:text="${item.salesAgentName}"></td>
+		<td th:text="${item.sisaPeriode}"></td>
+		<td th:text="${item.cabangDs}"></td>
+		<td th:text="${item.source}"></td>
+		<td th:text="${item.product}"></td>
+	<td>
+			<button type="button" class="btn btn-xs btn-warning btn-update"
+				th:value="${item.id}">
+				<i class="fa fa-edit"></i>
+			</button>
+	
+			<button type="button" class="btn btn-xs btn-danger btn-delete"
+				th:value="${item.id}">
+				<i class="fa fa-trash"></i>
+			</button>
+		</td>
+	</tr>
+</html>

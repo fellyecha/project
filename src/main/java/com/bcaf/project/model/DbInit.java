@@ -8,12 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.bcaf.project.repository.CabangDsRepo;
 //import com.bcaf.project.repository.KabupatenKotaRepo;
 //import com.bcaf.project.repository.KecamatanRepo;
 //import com.bcaf.project.repository.KelurahanRepo;
 //import com.bcaf.project.repository.ProvinsiRepo;
 import com.bcaf.project.repository.RoleRepo;
 import com.bcaf.project.repository.UserRepo;
+import com.bcaf.project.repository.UserRoleCabangRepo;
 import com.bcaf.project.repository.UserRoleRepo;
 
 @Service
@@ -29,6 +31,12 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private UserRoleRepo userRoleRepo;
+	
+	@Autowired
+	private UserRoleCabangRepo userRoleCabangRepo;
+	
+	@Autowired
+	private CabangDsRepo cabangDsRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -72,6 +80,7 @@ public class DbInit implements CommandLineRunner {
 			// simpan role ke database
 			this.roleRepo.saveAll(listRole);
 		}
+		
 		if(this.userRoleRepo.findAll().size()==0) {
 			List<UserRole> listUserRole = new ArrayList<UserRole>();
 			// mencari user dulu
@@ -120,6 +129,53 @@ public class DbInit implements CommandLineRunner {
 			listUserRole.add(new UserRole(user11.getId(), role11.getId()));
 			
 			this.userRoleRepo.saveAll(listUserRole);
+			
+		}
+		
+		if(this.userRoleCabangRepo.findAll().size()==0) {
+			List<UserRoleCabang> listUserRoleCabang = new ArrayList<UserRoleCabang>();
+			
+			//BM - Bu DESSY
+			User user1 = this.userRepo.findByUsername("20130443");
+			CabangDs cabangDs1 = this.cabangDsRepo.findByCabangName("WPI V");
+			listUserRoleCabang.add(new UserRoleCabang(user1.getId(), cabangDs1.getId()));
+			
+			User user2 = this.userRepo.findByUsername("20130443");
+			CabangDs cabangDs2 = this.cabangDsRepo.findByCabangName("DEPOK");
+			listUserRoleCabang.add(new UserRoleCabang(user2.getId(), cabangDs2.getId()));
+			
+			User user3 = this.userRepo.findByUsername("20130443");
+			CabangDs cabangDs3 = this.cabangDsRepo.findByCabangName("BALIKPAPAN");
+			listUserRoleCabang.add(new UserRoleCabang(user3.getId(), cabangDs3.getId()));
+			
+			User user4 = this.userRepo.findByUsername("20130443");
+			CabangDs cabangDs4 = this.cabangDsRepo.findByCabangName("BANJARMASIN");
+			listUserRoleCabang.add(new UserRoleCabang(user4.getId(), cabangDs4.getId()));
+			
+			User user5 = this.userRepo.findByUsername("20130443");
+			CabangDs cabangDs5 = this.cabangDsRepo.findByCabangName("SAMARINDA");
+			listUserRoleCabang.add(new UserRoleCabang(user5.getId(), cabangDs5.getId()));
+			
+			User user6 = this.userRepo.findByUsername("20130443");
+			CabangDs cabangDs6 = this.cabangDsRepo.findByCabangName("PONTIANAK");
+			listUserRoleCabang.add(new UserRoleCabang(user6.getId(), cabangDs6.getId()));
+			
+			//CMO NEW WPI V
+			User user7 = this.userRepo.findByUsername("20190077");
+			CabangDs cabangDs7 = this.cabangDsRepo.findByCabangName("WPI V");
+			listUserRoleCabang.add(new UserRoleCabang(user7.getId(), cabangDs7.getId()));
+			
+			//CMO REF WPI V
+			User user8 = this.userRepo.findByUsername("20140515");
+			CabangDs cabangDs8 = this.cabangDsRepo.findByCabangName("WPI V");
+			listUserRoleCabang.add(new UserRoleCabang(user8.getId(), cabangDs8.getId()));
+			
+			//CMO MUL WPI V
+			User user9 = this.userRepo.findByUsername("20180995");
+			CabangDs cabangDs9 = this.cabangDsRepo.findByCabangName("WPI V");
+			listUserRoleCabang.add(new UserRoleCabang(user9.getId(), cabangDs9.getId()));
+			
+			this.userRoleCabangRepo.saveAll(listUserRoleCabang);
 			
 		}
 //
