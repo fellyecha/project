@@ -27,7 +27,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>ID Kecamatan</th>
+								<th>Kabupaten / Kota</th>
 								<th>Nama Kecamatan</th>
 								<th>#</th>
 							</tr>
@@ -35,7 +35,7 @@
 						<tbody id="list-kecamatan">
 							<tr th:each="item : ${list}">
 								<td th:text="${item.id}"></td>
-								<td th:text="${item.idKabKota}"></td>
+								<td th:text="${item.kabupatenKota.namaKabKota}"></td>
 								<td th:text="${item.namaKecamatan}"></td>
 								<td>
 									<button type="button" class="btn btn-xs btn-warning btn-update" th:value="${item.id}">

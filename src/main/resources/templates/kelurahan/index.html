@@ -27,7 +27,7 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>ID Kecamatan</th>
+								<th>Kecamatan</th>
 								<th>Nama Kelurahan</th>
 								<th>Kode Pos</th>
 								<th>#</th>
@@ -36,7 +36,7 @@
 						<tbody id="list-kelurahan">
 							<tr th:each="item : ${list}">
 								<td th:text="${item.id}"></td>
-								<td th:text="${item.idKecamatan}"></td>
+								<td th:text="${item.kecamatan.namaKecamatan}"></td>
 								<td th:text="${item.namaKelurahan}"></td>
 								<td th:text="${item.kodePos}"></td>
 								<td>

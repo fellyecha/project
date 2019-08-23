@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<tr th:each="item : ${list}">
 		<td th:text="${item.id}"></td>
-		<td th:text="${item.idKabKota}"></td>
+		<td th:text="${item.kabupatenKota.namaKabKota}"></td>
 		<td th:text="${item.namaKecamatan}"></td>
 		<td>
 			<button type="button" class="btn btn-xs btn-warning btn-update"

@@ -64,23 +64,33 @@
 					<li><a th:href="@{/role/index}"><i class="fa fa-circle-o"></i> Role</a></li>
 					<li><a th:href="@{/userRole/index}"><i class="fa fa-circle-o"></i> User Role</a></li>
 					<li><a th:href="@{/position/index}"><i class="fa fa-circle-o"></i> Position</a></li>
-					<li><a th:href="@{/employee/index}"><i class="fa fa-circle-o"></i> Employee</a></li>
-					<li><a th:href="@{/employee1/index}"><i class="fa fa-circle-o"></i> Employee1</a></li>
+					<!-- <li><a th:href="@{/employee/index}"><i class="fa fa-circle-o"></i> Employee</a></li> -->
+					<li><a th:href="@{/employee1/index}"><i class="fa fa-circle-o"></i> Employee</a></li>
 				</ul>
 			</li>
 			
-			<li class="treeview">
-				<a href="#"> 
-					<i class="fa fa-users"></i>
+			<li>
+				<a th:href="@{/customerData/index}"> 
+					<i class="fa fa-upload"></i>
 					<span>Upload Customer Data</span> 
-					<span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a th:href="@{/customerData/index}"><i class="fa fa-circle-o"></i> Uploaded Customer data</a></li>
-					<li><a th:href="@{/customerData/uploadKategori}"><i class="fa fa-circle-o"></i> Upload</a></li>
-				</ul>
+
+					</a>
+			</li>
+			
+			<li>
+				<a th:href="@{/custDataBM/index}"> 
+					<i class="fa fa-upload"></i>
+					<span>Customer Data BM</span> 
+
+					</a>
+			</li>
+			
+			<li>
+				<a th:href="@{/custDataCMO/index}"> 
+					<i class="fa fa-upload"></i>
+					<span>Customer Data CMO</span> 
+
+					</a>
 			</li>
 			
 		</ul>
