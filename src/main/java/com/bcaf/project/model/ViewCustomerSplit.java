@@ -132,8 +132,11 @@ public class ViewCustomerSplit {
 	@Column(name="bca_branch_name", nullable = true, length = 255)
 	private String bcaBranchName;
 	
-	@Column(name="bca_kcu_name_baru", nullable = true, length = 255)
-	private String bcaKcuNameBaru;
+//	@Column(name="bca_kcu_name_baru", nullable = true, length = 255)
+//	private String bcaKcuNameBaru;
+	
+	@Column(name="bca_kcu_name", nullable = true, length = 255)
+	private String bcaKcuName;
 	
 	@Column(name="sales_agent", nullable = true, length = 255)
 	private String salesAgent;
@@ -472,12 +475,20 @@ public class ViewCustomerSplit {
 		this.bcaBranchName = bcaBranchName;
 	}
 
-	public String getBcaKcuNameBaru() {
-		return bcaKcuNameBaru;
+//	public String getBcaKcuNameBaru() {
+//		return bcaKcuNameBaru;
+//	}
+//
+//	public void setBcaKcuNameBaru(String bcaKcuNameBaru) {
+//		this.bcaKcuNameBaru = bcaKcuNameBaru;
+//	}
+
+	public String getBcaKcuName() {
+		return bcaKcuName;
 	}
 
-	public void setBcaKcuNameBaru(String bcaKcuNameBaru) {
-		this.bcaKcuNameBaru = bcaKcuNameBaru;
+	public void setBcaKcuName(String bcaKcuName) {
+		this.bcaKcuName = bcaKcuName;
 	}
 
 	public String getSalesAgent() {

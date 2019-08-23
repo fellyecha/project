@@ -7,5 +7,5 @@ import com.bcaf.project.model.UserRole;
 
 @Repository
 public interface UserRoleRepo extends JpaRepository<UserRole, Integer>{
-
+	public UserRole findById(Long id);
 }

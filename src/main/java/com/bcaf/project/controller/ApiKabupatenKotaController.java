@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bcaf.project.model.KabupatenKota;
 import com.bcaf.project.repository.KabupatenKotaRepo;
-import com.bcaf.project.repository.ProvinsiRepo;
 
 @RestController
 @RequestMapping(value="/api/kabkota")

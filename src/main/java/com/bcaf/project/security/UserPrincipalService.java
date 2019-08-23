@@ -14,10 +14,15 @@ public class UserPrincipalService implements UserDetailsService {
 	@Autowired
 	private UserRepo userRepo;
 	
+	public UserPrincipalService(UserRepo userRepo) {
+		this.userRepo = userRepo;
+	}
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = this.userRepo.findByUsername(username);
-		return new UserPrincipal(user);
+		UserPrincipal userPrincipal = new UserPrincipal(user);
+		return userPrincipal;
 	}
 
 }

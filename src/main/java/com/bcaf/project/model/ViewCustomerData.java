@@ -2,22 +2,18 @@ package com.bcaf.project.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name="tbl_customer_data")
-public class CustomerData {
-	
+@Table(name="view_customer_data")
+public class ViewCustomerData {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl_customer_data_index")
-	@TableGenerator(name="tbl_customer_data_index", table = "tbl_index",
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "view_customer_data_index")
+	@TableGenerator(name="view_customer_data_index", table = "tbl_index",
 			pkColumnName = "index_id", valueColumnName = "index_value",
 			allocationSize = 1, initialValue = 0)
 	
@@ -29,9 +25,6 @@ public class CustomerData {
 	
 	@Column(name="no_pin", nullable = false, length = 3)
 	private String noPin;
-	
-//	@Column(name="no_kontrak", nullable = false, length = 13)
-//	private String noKontrak;
 	
 	@Column(name="customer_id", nullable = false, length = 10)
 	private String customerId;
@@ -45,7 +38,7 @@ public class CustomerData {
 	@Column(name="id_card_number", nullable = false, length = 20)
 	private String idCardNumber;
 	
-	@Column(name="birth_date", nullable = false, length = 10)
+	@Column(name="c_birth_date", nullable = false, length = 10)
 	private String birthdate;
 	
 	@Column(name="home_phone_number", nullable = true, length = 20)
@@ -96,13 +89,13 @@ public class CustomerData {
 	@Column(name="body_no", length = 20) //apakah bisa null?
 	private String bodyNo;
 	
-	@Column(name="realisasi_date", nullable = false, length = 10)
+	@Column(name="c_realisasi_date", nullable = false, length = 10)
 	private String realisasiDate;
 	
-	@Column(name="close_date", nullable = true, length = 10)
+	@Column(name="c_close_date", nullable = true, length = 10)
 	private String closeDate;
 	
-	@Column(name="end_date", nullable = false, length = 10)
+	@Column(name="c_end_date", nullable = false, length = 10)
 	private String endDate;
 	
 	@Column(name="period_berjalan", nullable = false, length = 2)
@@ -162,11 +155,11 @@ public class CustomerData {
 //			updatable = false)
 //	private CabangDs cabangDs;
 	
-	public CustomerData() {
+	public ViewCustomerData() {
 		
 	}
 	
-	public CustomerData(String cabangName) {
+	public ViewCustomerData(String cabangName) {
 		this.cabangName = cabangName;
 	}
 	
@@ -193,14 +186,6 @@ public class CustomerData {
 	public void setNoPin(String noPin) {
 		this.noPin = noPin;
 	}
-
-//	public String getNoKontrak() {
-//		return noKontrak;
-//	}
-//
-//	public void setNoKontrak(String noKontrak) {
-//		this.noKontrak = noKontrak;
-//	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -538,5 +523,4 @@ public class CustomerData {
 	public void setCabangName(String cabangName) {
 		this.cabangName = cabangName;
 	}
-	
 }

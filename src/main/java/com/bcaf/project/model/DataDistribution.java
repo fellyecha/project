@@ -2,22 +2,21 @@ package com.bcaf.project.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.ForeignKey;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name="tbl_customer_data")
-public class CustomerData {
-	
+@Table(name = "tbl_data_distribution1")
+public class DataDistribution {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl_customer_data_index")
-	@TableGenerator(name="tbl_customer_data_index", table = "tbl_index",
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl_data_distribution_index")
+	@TableGenerator(name="tbl_data_distribution_index", table = "tbl_index",
 			pkColumnName = "index_id", valueColumnName = "index_value",
 			allocationSize = 1, initialValue = 0)
 	
@@ -30,9 +29,6 @@ public class CustomerData {
 	@Column(name="no_pin", nullable = false, length = 3)
 	private String noPin;
 	
-//	@Column(name="no_kontrak", nullable = false, length = 13)
-//	private String noKontrak;
-	
 	@Column(name="customer_id", nullable = false, length = 10)
 	private String customerId;
 	
@@ -42,16 +38,16 @@ public class CustomerData {
 	@Column(name="gender", nullable = false, length = 10)
 	private String gender;
 	
-	@Column(name="id_card_number", nullable = false, length = 20)
+	@Column(name="id_card_number", nullable = false, length = 16)
 	private String idCardNumber;
 	
 	@Column(name="birth_date", nullable = false, length = 10)
 	private String birthdate;
 	
-	@Column(name="home_phone_number", nullable = true, length = 20)
+	@Column(name="home_phone_number", nullable = true, length = 13)
 	private String homePhoneNumber;
 	
-	@Column(name="hp_number", nullable = false, length = 20)
+	@Column(name="hp_number", nullable = true, length = 13)
 	private String hpNumber;
 	
 	@Column(name="email_konsumen", nullable = true, length = 255)
@@ -90,10 +86,10 @@ public class CustomerData {
 	@Column(name="tenor", nullable = false, length = 2)
 	private String tenor;
 	
-	@Column(name="bpkb_no", length = 15) //apakah bisa null?
+	@Column(name="bpkb_no", length = 12) //apakah bisa null?
 	private String bpkbNo;
 	
-	@Column(name="body_no", length = 20) //apakah bisa null?
+	@Column(name="body_no", length = 17) //apakah bisa null?
 	private String bodyNo;
 	
 	@Column(name="realisasi_date", nullable = false, length = 10)
@@ -138,6 +134,9 @@ public class CustomerData {
 	@Column(name="bca_kcu_name", nullable = true, length = 255)
 	private String bcaKcuName;
 	
+	@Column(name="bca_kcu_name_baru", nullable = true, length = 255)
+	private String bcaKcuNameBaru;
+	
 	@Column(name="sales_agent", nullable = true, length = 255)
 	private String salesAgent;
 	
@@ -156,20 +155,28 @@ public class CustomerData {
 	@Column(name="product", length = 50)
 	private String product;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "cabang_ds", foreignKey = @ForeignKey(
-//			name = "fe_customer_cabang_ds"), insertable = false,
-//			updatable = false)
-//	private CabangDs cabangDs;
+	@Column(name="date_bm_recieved", length = 10)
+	private String dateBmRecieved;
 	
-	public CustomerData() {
-		
-	}
+	@Column(name="date_cmo_recieved", length = 10)
+	private String dateCmoRecieved;
 	
-	public CustomerData(String cabangName) {
-		this.cabangName = cabangName;
-	}
+	@Column(name="id_data_status", length = 50)
+	private String idDataStatus;
 	
+	@Column(name="data_description", length = 255)
+	private String dataDescription;
+	
+	@Column(name="user_id_bm", length = 10)
+	private String userIdBm;
+	
+	@Column(name="user_id_cmo", length = 10)
+	private String userIdCmo;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_data_status", foreignKey = @ForeignKey(name = "fe_datdis_status_data_id"), insertable = false, updatable = false)
+	private StatusData statusData;
+
 	public Long getId() {
 		return id;
 	}
@@ -193,14 +200,6 @@ public class CustomerData {
 	public void setNoPin(String noPin) {
 		this.noPin = noPin;
 	}
-
-//	public String getNoKontrak() {
-//		return noKontrak;
-//	}
-//
-//	public void setNoKontrak(String noKontrak) {
-//		this.noKontrak = noKontrak;
-//	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -321,7 +320,6 @@ public class CustomerData {
 	public void setMerkName(String merkName) {
 		this.merkName = merkName;
 	}
-
 
 	public String getTipe() {
 		return tipe;
@@ -483,6 +481,14 @@ public class CustomerData {
 		this.bcaKcuName = bcaKcuName;
 	}
 
+	public String getBcaKcuNameBaru() {
+		return bcaKcuNameBaru;
+	}
+
+	public void setBcaKcuNameBaru(String bcaKcuNameBaru) {
+		this.bcaKcuNameBaru = bcaKcuNameBaru;
+	}
+
 	public String getSalesAgent() {
 		return salesAgent;
 	}
@@ -507,17 +513,17 @@ public class CustomerData {
 		this.sisaPeriode = sisaPeriode;
 	}
 
+	public String getCabangName() {
+		return cabangName;
+	}
+
+	public void setCabangName(String cabangName) {
+		this.cabangName = cabangName;
+	}
+
 	public String getSource() {
 		return source;
 	}
-
-//	public CabangDs getCabangDs() {
-//		return cabangDs;
-//	}
-//
-//	public void setCabangDs(CabangDs cabangDs) {
-//		this.cabangDs = cabangDs;
-//	}
 
 	public void setSource(String source) {
 		this.source = source;
@@ -531,12 +537,52 @@ public class CustomerData {
 		this.product = product;
 	}
 
-	public String getCabangName() {
-		return cabangName;
+	public String getDateBmRecieved() {
+		return dateBmRecieved;
 	}
 
-	public void setCabangName(String cabangName) {
-		this.cabangName = cabangName;
+	public void setDateBmRecieved(String dateBmRecieved) {
+		this.dateBmRecieved = dateBmRecieved;
+	}
+
+	public String getDateCmoRecieved() {
+		return dateCmoRecieved;
+	}
+
+	public void setDateCmoRecieved(String dateCmoRecieved) {
+		this.dateCmoRecieved = dateCmoRecieved;
+	}
+
+	public String getIdDataStatus() {
+		return idDataStatus;
+	}
+
+	public void setIdDataStatus(String idDataStatus) {
+		this.idDataStatus = idDataStatus;
+	}
+
+	public String getDataDescription() {
+		return dataDescription;
+	}
+
+	public void setDataDescription(String dataDescription) {
+		this.dataDescription = dataDescription;
+	}
+
+	public String getUserIdBm() {
+		return userIdBm;
+	}
+
+	public void setUserIdBm(String userIdBm) {
+		this.userIdBm = userIdBm;
+	}
+
+	public String getUserIdCmo() {
+		return userIdCmo;
+	}
+
+	public void setUserIdCmo(String userIdCmo) {
+		this.userIdCmo = userIdCmo;
 	}
 	
 }

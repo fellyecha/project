@@ -25,6 +25,9 @@ public class StatusData {
 	
 	@Column(name="status_selling", nullable = false, length = 50)
 	private String statusSelling;
+	
+	@Column(name="status_order", nullable = false)
+	private Long statusOrder;
 
 
 	public Long getId() {
@@ -49,6 +52,14 @@ public class StatusData {
 
 	public void setStatusSelling(String statusSelling) {
 		this.statusSelling = statusSelling;
+	}
+
+	public Long getStatusOrder() {
+		return statusOrder;
+	}
+
+	public void setStatusOrder(Long statusOrder) {
+		this.statusOrder = statusOrder;
 	}
 	
 }

@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bcaf.project.model.Provinsi;
+import com.bcaf.project.model.User;
 import com.bcaf.project.repository.KabupatenKotaRepo;
 import com.bcaf.project.repository.ProvinsiRepo;
 
 @Controller
 @RequestMapping(value = "/provinsi/")
-public class ProvinsiController {
+public class ProvinsiController extends BaseController{
 	
 	@Autowired
 	private ProvinsiRepo repo;
@@ -30,6 +31,8 @@ public class ProvinsiController {
 	public ModelAndView index() {
 		ModelAndView view = new ModelAndView("provinsi/index");
 		List<Provinsi> list = this.repo.findAll();
+		//tambahin ini
+		User user = getUser();
 		view.addObject("list", list);
 		return view;
 	}

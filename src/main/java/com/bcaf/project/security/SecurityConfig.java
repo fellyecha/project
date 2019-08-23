@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,25 +24,24 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import com.bcaf.project.repository.UserRepo;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserPrincipalService userService;
 	
+	@Autowired
+	private UserRepo userRepo;
+	
+	public SecurityConfig(UserPrincipalService userService, UserRepo userRepo) {
+        this.userService = userService;
+        this.userRepo = userRepo;
+    }
+	
 	@Override
 	public void configure(final AuthenticationManagerBuilder auth){
-		/*
-		auth.inMemoryAuthentication()
-			.withUser("user1").password(passwordEncoder().encode("user123")).roles("USER")
-			.and()
-			.withUser("user2").password(passwordEncoder().encode("user123")).roles("USER","ADMIN","MANAGER")
-			.and()
-			.withUser("admin1").password(passwordEncoder().encode("admin123")).roles("ADMIN")
-			.and()
-			.withUser("manager1").password(passwordEncoder().encode("manager123")).roles("MANAGER");
-			
-		*/
 		auth.authenticationProvider(authenticationProvider());
 	}
 	
@@ -63,6 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    http.exceptionHandling().authenticationEntryPoint(delegatingEntryPoint());
 	    
 		http.csrf().disable()
+        // add jwt filters (1. authentication, 2. authorization)
+//        .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+//        .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepo))
 		.authorizeRequests()
 		.antMatchers(
 				"/bootstrap/dist/css/**","/bootstrap/dist/fonts/**","/bootstrap/dist/js/**",
@@ -73,9 +77,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/iCheck/flat/**","/iCheck/futurico/**","/iCheck/line/**","/iCheck/minimal/**","/iCheck/polaris/**","/iCheck/square/**","/iCheck/**",
 				"/Ionicons/css/**","/Ionicons/fonts/**","/Ionicons/less/**","/Ionicons/scss/**","/Ionicons/src/**","/Ionicons/png/**",
 				"/jquery/dist/**","/jquery-slimscroll/**","/jquery-ui/**","/moment/**","/select2/dist/css/**","/select2/dist/js/**").permitAll()
-		.antMatchers("/home").hasAnyRole("USER","CMONEW","CMOREF","CMOMUL")
-		.antMatchers("/manager").hasAnyRole("MANAGER","RM","BM")
-		.antMatchers("/home","/admin","/provinsi/*").hasAnyRole("ADMIN","CMCDH","CMC")
+//		.antMatchers(HttpMethod.POST, "/login").permitAll()
+		.antMatchers("/home", "/custDataCMO/*").hasAnyRole("USER","CMONEW","CMOREF","CMOMUL")
+		.antMatchers("/manager", "/custDataBM/*").hasAnyRole("MANAGER","RM","BM")
+		.antMatchers("/admin","/provinsi/*", "/kabkota/*", "/kecamatan/*", "/kelurahan/*", "/position/*", "/cabangBca/*", "/cabangBcaf/*", "/cabangDs/*", "/customerData/*", "/employee1/*", "/customerData/*", "/api/public/admin/*").hasAnyRole("ADMIN","CMCDH","CMC")
+		.antMatchers("/api/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()

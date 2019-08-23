@@ -13,14 +13,14 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">Customer Data</h3>
 					<div class="box-tools">
-							
+<!-- 							
 							<a th:href="@{/customerData/uploadKategori}" class="btn btn-info btn-sm" id="btn-add">
 								<i class="fa fa-plus"></i>
 							</a>
 						
 						<button type="button" class="btn btn-danger btn-sm" id="btn-min">
 							<i class="fa fa-remove"></i>
-						</button>
+						</button> -->
 					</div>
 				</div>
 				<div class="box-body table-responsive no padding">
@@ -172,7 +172,7 @@
 			
 			function loadData(){
 				$.ajax({
-					url :'/customerData/list',
+					url :'/custDataCMO/list',
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
@@ -189,7 +189,7 @@
 				var vId = $(this).val();
 				
 				$.ajax({
-					url:'/customerData/edit/'+ vId,
+					url:'/custDataCMO/edit/'+ vId,
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
@@ -201,7 +201,7 @@
 				var vId = $(this).val();
 				
 				$.ajax({
-					url:'/customerData/hapus/'+ vId,
+					url:'/custDataCMO/hapus/'+ vId,
 					type:'get',
 					dataType:'html',
 					success:function(hasil){

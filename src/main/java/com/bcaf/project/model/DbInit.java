@@ -53,6 +53,7 @@ public class DbInit implements CommandLineRunner {
 			listUser.add(new User("20122571", passwordEncoder.encode("cmc123"), "20122571@bcaf.co.id"));
 			listUser.add(new User("20060991", passwordEncoder.encode("rm123"), "20060991@bcaf.co.id"));
 			listUser.add(new User("20130443", passwordEncoder.encode("bm123"), "20130443@bcaf.co.id"));
+			listUser.add(new User("20112000", passwordEncoder.encode("bm123"), "20112000@bcaf.co.id"));
 			listUser.add(new User("20190077", passwordEncoder.encode("cmonew123"), "20190077@bcaf.co.id"));
 			listUser.add(new User("20140515", passwordEncoder.encode("cmoref123"), "20140515@bcaf.co.id"));
 			listUser.add(new User("20180995", passwordEncoder.encode("cmomul123"), "20180995@bcaf.co.id"));
@@ -112,21 +113,25 @@ public class DbInit implements CommandLineRunner {
 			Role role7 = this.roleRepo.findByCode("ROLE_RM");
 			listUserRole.add(new UserRole(user7.getId(), role7.getId()));
 			
-			User user8 = this.userRepo.findByUsername("20130443");
+			User user8 = this.userRepo.findByUsername("20112000");
 			Role role8 = this.roleRepo.findByCode("ROLE_BM");
 			listUserRole.add(new UserRole(user8.getId(), role8.getId()));
 			
-			User user9 = this.userRepo.findByUsername("20190077");
-			Role role9 = this.roleRepo.findByCode("ROLE_CMONEW");
+			User user9 = this.userRepo.findByUsername("20130443");
+			Role role9 = this.roleRepo.findByCode("ROLE_BM");
 			listUserRole.add(new UserRole(user9.getId(), role9.getId()));
 			
-			User user10 = this.userRepo.findByUsername("20140515");
-			Role role10 = this.roleRepo.findByCode("ROLE_CMOREF");
+			User user10 = this.userRepo.findByUsername("20190077");
+			Role role10 = this.roleRepo.findByCode("ROLE_CMONEW");
 			listUserRole.add(new UserRole(user10.getId(), role10.getId()));
 			
-			User user11 = this.userRepo.findByUsername("20180995");
-			Role role11 = this.roleRepo.findByCode("ROLE_CMOMUL");
+			User user11 = this.userRepo.findByUsername("20140515");
+			Role role11 = this.roleRepo.findByCode("ROLE_CMOREF");
 			listUserRole.add(new UserRole(user11.getId(), role11.getId()));
+			
+			User user12 = this.userRepo.findByUsername("20180995");
+			Role role12 = this.roleRepo.findByCode("ROLE_CMOMUL");
+			listUserRole.add(new UserRole(user12.getId(), role12.getId()));
 			
 			this.userRoleRepo.saveAll(listUserRole);
 			
@@ -174,6 +179,14 @@ public class DbInit implements CommandLineRunner {
 			User user9 = this.userRepo.findByUsername("20180995");
 			CabangDs cabangDs9 = this.cabangDsRepo.findByCabangName("WPI V");
 			listUserRoleCabang.add(new UserRoleCabang(user9.getId(), cabangDs9.getId()));
+			
+			User user10 = this.userRepo.findByUsername("20112000");
+			CabangDs cabangDs10 = this.cabangDsRepo.findByCabangName("WPI II");
+			listUserRoleCabang.add(new UserRoleCabang(user10.getId(), cabangDs10.getId()));
+			
+			User user11 = this.userRepo.findByUsername("20112000");
+			CabangDs cabangDs11 = this.cabangDsRepo.findByCabangName("CIREBON");
+			listUserRoleCabang.add(new UserRoleCabang(user11.getId(), cabangDs11.getId()));
 			
 			this.userRoleCabangRepo.saveAll(listUserRoleCabang);
 			
