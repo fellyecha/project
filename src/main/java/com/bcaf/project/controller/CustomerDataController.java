@@ -145,7 +145,7 @@ public class CustomerDataController {
 	public void importxls(String Filename) throws IOException, InvalidFormatException {
 		try {
 			String url = "jdbc:sqlserver://localhost;databaseName=project_db";
-			Connection conn = DriverManager.getConnection(url, "sa", "M4rf3l");
+			Connection conn = DriverManager.getConnection(url, "sa", "Marf3l");
 			Statement st = conn.createStatement();
 
 			XSSFWorkbook workbook = new XSSFWorkbook(Filename);

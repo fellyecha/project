@@ -42,7 +42,7 @@ public class CustomerData {
 	@Column(name="gender", nullable = false, length = 10)
 	private String gender;
 	
-	@Column(name="id_card_number", nullable = false, length = 20)
+	@Column(name="id_card_number", nullable = false, length = 100)
 	private String idCardNumber;
 	
 	@Column(name="birth_date", nullable = false, length = 10)

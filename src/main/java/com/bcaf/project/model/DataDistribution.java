@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name = "tbl_data_distribution1")
+@Table(name = "tbl_data_distribution")
 public class DataDistribution {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl_data_distribution_index")
@@ -134,9 +134,6 @@ public class DataDistribution {
 	@Column(name="bca_kcu_name", nullable = true, length = 255)
 	private String bcaKcuName;
 	
-	@Column(name="bca_kcu_name_baru", nullable = true, length = 255)
-	private String bcaKcuNameBaru;
-	
 	@Column(name="sales_agent", nullable = true, length = 255)
 	private String salesAgent;
 	
@@ -172,6 +169,12 @@ public class DataDistribution {
 	
 	@Column(name="user_id_cmo", length = 10)
 	private String userIdCmo;
+	
+	@Column(name="tgl_split_cabang", length = 10)
+	private String tglSplitCabang;
+	
+	@Column(name="tgl_split_cmo", length = 10)
+	private String tglSplitCmo;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_data_status", foreignKey = @ForeignKey(name = "fe_datdis_status_data_id"), insertable = false, updatable = false)
@@ -481,14 +484,6 @@ public class DataDistribution {
 		this.bcaKcuName = bcaKcuName;
 	}
 
-	public String getBcaKcuNameBaru() {
-		return bcaKcuNameBaru;
-	}
-
-	public void setBcaKcuNameBaru(String bcaKcuNameBaru) {
-		this.bcaKcuNameBaru = bcaKcuNameBaru;
-	}
-
 	public String getSalesAgent() {
 		return salesAgent;
 	}
@@ -583,6 +578,30 @@ public class DataDistribution {
 
 	public void setUserIdCmo(String userIdCmo) {
 		this.userIdCmo = userIdCmo;
+	}
+
+	public String getTglSplitCabang() {
+		return tglSplitCabang;
+	}
+
+	public void setTglSplitCabang(String tglSplitCabang) {
+		this.tglSplitCabang = tglSplitCabang;
+	}
+
+	public String getTglSplitCmo() {
+		return tglSplitCmo;
+	}
+
+	public void setTglSplitCmo(String tglSplitCmo) {
+		this.tglSplitCmo = tglSplitCmo;
+	}
+
+	public StatusData getStatusData() {
+		return statusData;
+	}
+
+	public void setStatusData(StatusData statusData) {
+		this.statusData = statusData;
 	}
 	
 }
