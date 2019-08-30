@@ -1,0 +1,140 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decorate="~{fragments/layout}">
+	<head>
+		<title>kategori permasalahan</title>
+		<link rel="stylesheet" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" />
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+		
+	</head>
+	<body>
+		<div data-layout-fragment="content">
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">List Kategori permasalahan</h3>
+					<div class="box-tools">
+						<button type="button" class="btn btn-info tbn-sm" id="btn-add">
+							<i class="fa fa-plus"></i>
+						</button>
+						<button type="button" class="btn btn-success tbn-sm" id="btn-import">
+							<i class="fa fa-plus"></i>
+						</button>
+					</div>
+				</div>
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-hover" id="mypage">
+						<thead> 
+							<tr>
+ 								<th>ID</th>
+								<th> Jenis permasalahan </th>
+								<th> Action</th>
+								
+							</tr>
+						</thead>
+						<tbody id="list-birojasa">
+								<tr th:each="row : ${kategori}">
+								<td th:text="${row.id}"></td>
+								<td th:text="${row.jenisPermasalahan}"></td>
+								<td>
+									<button type="button" class="btn btn-warning btn-update" th:value="${row.id}" >
+										<i class="fa fa-edit"></i>
+									</button>
+									
+									<button type="button" class="btn btn-danger btn-delete" th:value="${row.id}">
+										<i class="fa fa-trash"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="main-modal" data-layout-fragment="content-modal">
+			<div class="modal-dialog">
+				<div class="modal-content" id="main-modal-content">
+				
+				</div>
+			</div>
+		</div>
+		<!-- cara nampilin modal -->
+		<script data-layout-fragment="script-js"> 
+			$("#btn-add").click(function(){
+				$.ajax({
+					url:'/provinsi/create', 
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});
+			
+			$("#main-modal").on('submit', 'form', function(){
+				var vUrl = $(this).attr('action');
+				var vData = $(this).serialize();
+				
+				$.ajax({
+					url:vUrl, 
+					type:'post',
+					data:vData,
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('hide');
+						//panggil loadData
+						loadData();
+					}
+				});
+				
+				return false;
+			});
+			
+			//functionn load data 
+			function loadData(){
+				$.ajax({
+					url:'/provinsi/list',
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#list-provinsi').html(hasil);
+					}
+				});
+			}
+			
+			$("#list-provinsi").on('click','.btn-update', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/provinsi/edit/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			}).on('click','.btn-delete', function(){
+				var vId = $(this).val();
+				
+				$.ajax({
+					url:'/provinsi/hapus/'+ vId,
+					type:'get',
+					dataType:'html',
+					success:function(hasil){
+						$('#main-modal-content').html(hasil);
+						$("#main-modal").modal('show');
+					}
+				});
+			});
+			
+			$(document).ready(function() {
+				$('#mypage').DataTable();
+			});
+		</script>
+	</body>
+</html>

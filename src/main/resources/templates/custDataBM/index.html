@@ -14,13 +14,13 @@
 					<h3 class="box-title">Customer Data</h3>
 					<div class="box-tools">
 							
-							<a th:href="@{/customerData/uploadKategori}" class="btn btn-info btn-sm" id="btn-add">
+<!-- 							<a th:href="@{/customerData/uploadKategori}" class="btn btn-info btn-sm" id="btn-add">
 								<i class="fa fa-plus"></i>
-							</a>
+							</a> 
 						
 						<button type="button" class="btn btn-danger btn-sm" id="btn-min">
 							<i class="fa fa-remove"></i>
-						</button>
+						</button> -->
 					</div>
 				</div>
 				<div class="box-body table-responsive no padding">
@@ -38,8 +38,8 @@
 								<th>Home Number</th> 
 								<th>HP</th>
 								<th>Email</th> 
-								<th>Company</th> -->
-								<th>Job Title</th>
+								<th>Company</th> 
+								<th>Job Title</th> -->
 						<!--	<th>Spouse</th> 
 								<th>Kabupaten</th>
 								<th>Branch</th> 
@@ -60,21 +60,21 @@
 								<th>Status Close</th> 
 								<th>OD Days Max</th>
 								<th>Ovd By Cust ID</th>
-								<th>OD Loan</th> -->
+								<th>OD Loan</th> 
 								<th>BPKB Status</th>
-						<!--	<th>BCA Branch Status</th>
+								<th>BCA Branch Status</th>
 								<th>BCA Branch Name</th>
 								<th>BCA KCU Name Baru</th>
 								<th>Sales Agent</th>
-								<th>Sales Agent Name</th> -->
-								<th>Sisa Periode</th> 
+								<th>Sales Agent Name</th> 
+								<th>Sisa Periode</th> -->
 								<th>Cabang DS</th>
 								<th>Source</th>
 								<th>Product</th>
 								<th>#</th>
 							</tr>
 						</thead>
-						<tbody id="list-customer-split">
+						<tbody id="list-customer-data">
 							<tr th:each="item : ${list}">
 						<!--	<td th:text="${item.id}"></td> 
 						
@@ -88,9 +88,8 @@
 								<td th:text="${item.homePhoneNumber}"></td> 
 								<td th:text="${item.hpNumber}"></td>
 								<td th:text="${item.emailKonsumen}"></td> 
-								<td th:text="${item.companyName}"></td> -->
-								
-								<td th:text="${item.jobTitle}"></td>
+								<td th:text="${item.companyName}"></td> 
+								<td th:text="${item.jobTitle}"></td> -->
 								
 						<!--	<td th:text="${item.spouseName}"></td> 
 						
@@ -117,25 +116,25 @@
 								<td th:text="${item.statusCloseType}"></td> 
 								<td th:text="${item.odDaysMax}"></td>								
 								<td th:text="${item.ovdByCustID}"></td>
-								<td th:text="${item.odLoan}"></td> -->
+								<td th:text="${item.odLoan}"></td> 
 								<td th:text="${item.bpkbStatus}"></td>
-						<!--	<td th:text="${item.bcaBranchStatus}"></td>
+							<td th:text="${item.bcaBranchStatus}"></td>
 								<td th:text="${item.bcaBranchName}"></td>
 								<td th:text="${item.bcaKcuNameBaru}"></td>								
 								<td th:text="${item.salesAgent}"></td>
-							 	<td th:text="${item.salesAgentName}"></td> -->
-								<td th:text="${item.sisaPeriode}"></td> 	
+							 	<td th:text="${item.salesAgentName}"></td> 
+								<td th:text="${item.sisaPeriode}"></td> -->	
 								<td th:text="${item.cabangName}"></td>
 								<td th:text="${item.source}"></td>
 								<td th:text="${item.product}"></td>
 							<td>
-									<button type="button" class="btn btn-xs btn-warning btn-update" th:value="${item.id}">
-										<i class="fa fa-edit"></i>
+									<button type="button" class="btn btn-xs btn-success btn-information" th:value="${item.id}">
+										<i class="fa fa-info"></i>
 									</button>
 									
-									<button type="button" class="btn btn-xs btn-danger btn-delete" th:value="${item.id}">
+									<!-- <button type="button" class="btn btn-xs btn-danger btn-delete" th:value="${item.id}">
 										<i class="fa fa-trash"></i>
-									</button>
+									</button> -->
 								</td>
 							</tr>
 						</tbody>
@@ -172,11 +171,11 @@
 			
 			function loadData(){
 				$.ajax({
-					url :'/customerData/list',
+					url :'/custDataBM/list',
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
-						$('#list-customer-split').html(hasil);
+						$('#list-customer-data').html(hasil);
 					}
 				});
 			}
@@ -185,11 +184,11 @@
 				alert('Test Alert');
 			});
 			
-			$("#list-customer-split").on('click','.btn-update', function(){
+			$("#list-customer-data").on('click','.btn-information', function(){
 				var vId = $(this).val();
 				
 				$.ajax({
-					url:'/customerData/edit/'+ vId,
+					url:'/custDataBM/edit/'+ vId,
 					type:'get',
 					dataType:'html',
 					success:function(hasil){
@@ -201,7 +200,7 @@
 				var vId = $(this).val();
 				
 				$.ajax({
-					url:'/customerData/hapus/'+ vId,
+					url:'/custDataBM/hapus/'+ vId,
 					type:'get',
 					dataType:'html',
 					success:function(hasil){

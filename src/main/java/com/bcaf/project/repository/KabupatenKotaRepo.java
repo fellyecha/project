@@ -12,6 +12,6 @@ import com.bcaf.project.model.KabupatenKota;
 @Repository
 public interface KabupatenKotaRepo extends JpaRepository<KabupatenKota, Long>{
 	public List<KabupatenKota> findByIdProvinsi(Long idProvinsi);
-	@Query("select k from KabupatenKota k where k.idProvinsi = idProvinsi")
+	@Query("select k from KabupatenKota k where k.idProvinsi = :idProvinsi")
 	List<KabupatenKota> findIdProvinsi(@Param("idProvinsi") Long idProvinsi);
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=en xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decorate="~{fragments/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Upload Kategori</title>
+</head>
+<body>
+<div data-layout-fragment="content">
+<div class="box box-info">
+	<div class="box-header with-border">
+		<h3 class="box-title">Import data kategori permasalahan</h3>
+	</div>
+	<div style="padding:15px;">
+	<form method="POST" action="upload" enctype="multipart/form-data">
+		<table>
+	    <tr>
+	    	<td><input type="file" name="file" class="form-control" /></td>
+	    	<td><input type="submit" value="Import!" class="btn btn-info tbn-sm" /></td>
+	    </tr>
+	    </table>
+	</form>
+	</div>
+</div>
+</div>
+
+</body>
+</html>

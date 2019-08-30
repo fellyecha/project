@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=en xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decorate="~{fragments/layout}" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Upload Kategori</title>
+<body>
+
+<h1>Spring Boot - Upload Status</h1>
+
+
+
+
+<div data-layout-fragment="content">
+<div class="box box-info">
+	<div class="box-header with-border">
+		<h3 class="box-title">Import data kategori permasalahan</h3>
+	</div>
+	
+	<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+	
+</div>
+</div>
+
+</body>
+</html>

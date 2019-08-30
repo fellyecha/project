@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+//import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.HibernateException;
+//import org.hibernate.HibernateException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,47 +18,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bcaf.project.model.User;
 import com.bcaf.project.model.ViewCustomerData;
 import com.bcaf.project.model.ViewCustomerSplit;
-//import com.bcaf.project.model.ViewCustomerSplit;
 import com.bcaf.project.repository.ViewCustomerDataRepo;
 import com.bcaf.project.repository.ViewCustomerSplitRepo;
 
 @Controller
 @RequestMapping(value = "/custDataBM/")
 public class CustDataBMController extends BaseController{
-	@Autowired
-	public ViewCustomerSplitRepo repo;
 	
 	@Autowired
 	public ViewCustomerDataRepo datRepo;
 	
-	
-//	@GetMapping(value = "index")
-//	public ModelAndView index(@ModelAttribute CustomerData customerData) {
-//		ModelAndView view = new ModelAndView("custDataBM/index");
-////		List<CustomerData> list = this.repo.findByCabangDs(urolecabRepo.get)
-//		List<CabangDs> listDs = this.cabdsRepo.findByCabangName(customerData.getCabangName());
-//		view.addObject("listDs", listDs);
-//		return view;
-//		
-////		List<Provinsi> listProp = this.propRepo.findAll();
-////		if(this.kecRepo.findByIdKabKota(kabkota.getId()).size()==0) {
-//	}
-	
 	@GetMapping(value = "index")
 	public ModelAndView index() throws SQLException {
 		ModelAndView view = new ModelAndView("custDataBM/index");
-//		List<ViewCustomerData> list = this.datRepo.findAll();
 		User user = getUser();
 		String us = user.getUsername();
-//		System.out.println(us + "this is us");
-//		System.out.println(user + "this is user");
 		
 		String sql = "Select * From view_customer_split a "
 		+ "JOIN tbl_cabang_ds c ON a.cabang_ds = c.cabang_ds "
@@ -139,7 +119,7 @@ public class CustDataBMController extends BaseController{
                 obj.setJobTitle(jobTitle);
                 obj.setSpouseName(spouseName);
                 obj.setHomeKabupaten(homeKabupaten);
-                obj.setBranchName(bcaBranchName);
+                obj.setBranchName(branchName);
                 obj.setSubProduk(subProduk);
                 obj.setMerkName(merkName);
                 obj.setTipe(tipe);
@@ -162,7 +142,7 @@ public class CustDataBMController extends BaseController{
                 obj.setBcaBranchStatus(bcaBranchStatus);
                 obj.setBcaBranchName(bcaBranchName);
                 obj.setBcaKcuName(bcaKcuName);
-                obj.setSalesAgent(salesAgentName);
+                obj.setSalesAgent(salesAgent);
                 obj.setSalesAgentName(salesAgentName);
                 obj.setSisaPeriode(sisaPeriode);
                 obj.setCabangName(cabangName);

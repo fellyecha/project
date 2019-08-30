@@ -27,9 +27,6 @@ public class ViewCustomerSplit {
 	@Column(name="no_pin", nullable = false, length = 3)
 	private String noPin;
 	
-//	@Column(name="no_kontrak", nullable = false, length = 13)
-//	private String noKontrak;
-	
 	@Column(name="customer_id", nullable = false, length = 10)
 	private String customerId;
 	
@@ -132,9 +129,6 @@ public class ViewCustomerSplit {
 	@Column(name="bca_branch_name", nullable = true, length = 255)
 	private String bcaBranchName;
 	
-//	@Column(name="bca_kcu_name_baru", nullable = true, length = 255)
-//	private String bcaKcuNameBaru;
-	
 	@Column(name="bca_kcu_name", nullable = true, length = 255)
 	private String bcaKcuName;
 	
@@ -155,12 +149,6 @@ public class ViewCustomerSplit {
 	
 	@Column(name="product", length = 50)
 	private String product;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "cabang_ds", foreignKey = @ForeignKey(
-//			name = "fe_customer_cabang_ds"), insertable = false,
-//			updatable = false)
-//	private CabangDs cabangDs;
 	
 	public ViewCustomerSplit() {
 		
@@ -193,14 +181,6 @@ public class ViewCustomerSplit {
 	public void setNoPin(String noPin) {
 		this.noPin = noPin;
 	}
-
-//	public String getNoKontrak() {
-//		return noKontrak;
-//	}
-//
-//	public void setNoKontrak(String noKontrak) {
-//		this.noKontrak = noKontrak;
-//	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -475,14 +455,6 @@ public class ViewCustomerSplit {
 		this.bcaBranchName = bcaBranchName;
 	}
 
-//	public String getBcaKcuNameBaru() {
-//		return bcaKcuNameBaru;
-//	}
-//
-//	public void setBcaKcuNameBaru(String bcaKcuNameBaru) {
-//		this.bcaKcuNameBaru = bcaKcuNameBaru;
-//	}
-
 	public String getBcaKcuName() {
 		return bcaKcuName;
 	}
@@ -518,14 +490,6 @@ public class ViewCustomerSplit {
 	public String getSource() {
 		return source;
 	}
-
-//	public CabangDs getCabangDs() {
-//		return cabangDs;
-//	}
-//
-//	public void setCabangDs(CabangDs cabangDs) {
-//		this.cabangDs = cabangDs;
-//	}
 
 	public void setSource(String source) {
 		this.source = source;

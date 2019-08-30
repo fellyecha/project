@@ -9,11 +9,11 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name = "tbl_data_distribution")
-public class DataDistribution {
+@Table(name = "view_transactional")
+public class ViewTransactional {
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl_data_distribution_index")
-	@TableGenerator(name="tbl_data_distribution_index", table = "tbl_index",
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "tbl_view_transactional_index")
+	@TableGenerator(name="tbl_view_transactional_index", table = "tbl_index",
 			pkColumnName = "index_id", valueColumnName = "index_value",
 			allocationSize = 1, initialValue = 0)
 	

@@ -20,18 +20,33 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bcaf.project.model.DataDistribution;
 import com.bcaf.project.model.StatusData;
+import com.bcaf.project.model.Transaction;
 import com.bcaf.project.model.User;
+import com.bcaf.project.model.ViewTransactional;
 import com.bcaf.project.repository.DataDistributionRepo;
 import com.bcaf.project.repository.StatusDataRepo;
+import com.bcaf.project.repository.TransactionRepo;
+import com.bcaf.project.repository.ViewCustomerDataRepo;
+import com.bcaf.project.repository.ViewTransactionalRepo;
+
 
 @Controller
 @RequestMapping(value = "/custDataCMO/")
 public class CustDataCMOController extends BaseController{
 	@Autowired
-	private DataDistributionRepo repo;
+	private ViewTransactionalRepo repo;
+	
+	@Autowired
+	private DataDistributionRepo datRepo;
 	
 	@Autowired
 	private StatusDataRepo statRepo;
+	
+	@Autowired
+	private ViewCustomerDataRepo custRepo;
+	
+	@Autowired
+	private TransactionRepo transRepo;
 	
 	@GetMapping(value="index")
 	public ModelAndView index() throws SQLException{
@@ -40,15 +55,75 @@ public class CustDataCMOController extends BaseController{
 		User user = getUser();
 		String us = user.getUsername();
 		
-		String sql = "Select * From tbl_data_distribution1 a "
+		String maxSql = "SELECT MAX(id) as LastId FROM view_customer_data";
+		long max = 0;
+		try (Connection conn = DriverManager.getConnection(
+                "jdbc:sqlserver://localhost;databaseName=project_db", "sa", "Marf3l");
+				PreparedStatement preparedStatement = conn.prepareStatement(maxSql)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                max = resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//		System.out.println(max);
+
+		
+		//ini insert
+//		String insSql = "insert into tbl_transaction (id_cust_data, id_data_status) "
+//				+ "values ((select id from tbl_customer_data where id = ?), 1)";
+////				+ "(select id from tbl_status_data where id=1))";
+//		List<Transaction> listTran = new ArrayList<>();
+//		
+//		for (int i = 1; i <= max; i++) {
+//			//ini buat insert into
+//			try (Connection conn = DriverManager.getConnection(
+//	                "jdbc:sqlserver://localhost;databaseName=project_db", "sa", "Marf3l");
+//					PreparedStatement preparedStatement = conn.prepareStatement(insSql)) {
+//				
+//				preparedStatement.setLong(1, i);
+//	            ResultSet resultSet = preparedStatement.executeQuery();
+//
+//	            while (resultSet.next()) {
+//	                Long idCustData = resultSet.getLong("id");
+//	                Long idDataStatus = resultSet.getLong(1);
+//	                		
+//	                Transaction obj = new Transaction();
+//	                obj.setIdCustData(idCustData);
+//	                obj.setIdDataStatus(idDataStatus);
+//
+//	                listTran.add(obj);
+//	            }
+//
+//	        } catch (SQLException e) {
+//	            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+//	        } catch (Exception e) {
+//	            e.printStackTrace();
+//	        }
+//		}
+
+		
+		
+		
+		
+		
+		//ini select
+		String sql = "Select * From view_transactional a "
 				+ "JOIN tbl_cabang_ds c ON a.cabang_ds = c.cabang_ds "
 				+ "JOIN tbl_user_role_cabang AS r ON c.id = r.cabang_id "
 				+ "JOIN tbl_user AS f ON r.username = f.id "
 				+ "WHERE f.username = ? "
 				+ "ORDER BY a.id ASC";
 		
-		List<DataDistribution> list = new ArrayList<>();
-		
+		List<ViewTransactional> list = new ArrayList<>();
+		//ini buat select keluarin hasil
+		// nanti benerin ini ya sesuaiin sama view nya
 		try (Connection conn = DriverManager.getConnection(
                 "jdbc:sqlserver://localhost;databaseName=project_db", "sa", "Marf3l");
 				PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
@@ -101,8 +176,17 @@ public class CustDataCMOController extends BaseController{
                 String cabangName = resultSet.getString("cabang_ds");
                 String source = resultSet.getString("source");
                 String product = resultSet.getString("product");
-
-                DataDistribution obj = new DataDistribution();
+                Long idDataStatus = resultSet.getLong("id_data_status");
+                String statusSelling = resultSet.getString("status_selling");
+                String status = resultSet.getString("status");
+                Long statusOrder = resultSet.getLong("status_order");
+                String dataDescription = resultSet.getString("data_description");
+                String dateBmRecieved = resultSet.getString("date_bm_received");
+                String userIdBm = resultSet.getString("user_id_bm");
+                String dateCmoRecieved = resultSet.getString("date_cmo_received");
+                String userIdCmo = resultSet.getString("user_id_cmo");
+                
+                ViewTransactional obj = new ViewTransactional();
                 obj.setId(id);
                 obj.setNoRek(noRek);
                 obj.setNoPin(noPin);
@@ -118,7 +202,7 @@ public class CustDataCMOController extends BaseController{
                 obj.setJobTitle(jobTitle);
                 obj.setSpouseName(spouseName);
                 obj.setHomeKabupaten(homeKabupaten);
-                obj.setBranchName(bcaBranchName);
+                obj.setBranchName(branchName);
                 obj.setSubProduk(subProduk);
                 obj.setMerkName(merkName);
                 obj.setTipe(tipe);
@@ -141,14 +225,22 @@ public class CustDataCMOController extends BaseController{
                 obj.setBcaBranchStatus(bcaBranchStatus);
                 obj.setBcaBranchName(bcaBranchName);
                 obj.setBcaKcuName(bcaKcuName);
-                obj.setSalesAgent(salesAgentName);
+                obj.setSalesAgent(salesAgent);
                 obj.setSalesAgentName(salesAgentName);
                 obj.setSisaPeriode(sisaPeriode);
                 obj.setCabangName(cabangName);
                 obj.setSource(source);
                 obj.setProduct(product);
+                obj.setIdDataStatus(idDataStatus);
+                obj.setStatusSelling(statusSelling);
+                obj.setStatus(status);
+                obj.setStatusOrder(statusOrder);
+                obj.setDataDescription(dataDescription);
+                obj.setDateBmRecieved(dateBmRecieved);
+                obj.setUserIdBm(userIdBm);
+                obj.setDateCmoRecieved(dateCmoRecieved);
+                obj.setUserIdCmo(userIdCmo);
 
-//                System.out.println(obj);
                 list.add(obj);
             }
 
@@ -166,7 +258,7 @@ public class CustDataCMOController extends BaseController{
 	@GetMapping(value="edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		ModelAndView view = new ModelAndView("custDataCMO/_form");
-		DataDistribution item = this.repo.findById(id).orElse(null);
+		ViewTransactional item = this.repo.findById(id).orElse(null);
 		view.addObject("objCustData", item);
 		List<StatusData> listStatus = this.statRepo.findByStatusOrder1();
 		view.addObject("listStatus", listStatus);
@@ -180,7 +272,7 @@ public class CustDataCMOController extends BaseController{
 			view.addObject("objCustData", objCustData);
 		}
 		else {
-			this.repo.save(objCustData);
+			this.datRepo.save(objCustData);
 			view.addObject("objCustData", new DataDistribution());
 		}
 		
@@ -191,7 +283,7 @@ public class CustDataCMOController extends BaseController{
 	@GetMapping(value = "list")
 	public ModelAndView list() {
 		ModelAndView view = new ModelAndView("custDataCMO/_list");
-		List<DataDistribution> list = this.repo.findAll();
+		List<ViewTransactional> list = this.repo.findAll();
 		view.addObject("list", list);
 		return view;
 	}
